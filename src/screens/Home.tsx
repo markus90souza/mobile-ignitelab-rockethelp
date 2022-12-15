@@ -40,9 +40,11 @@ export function Home() {
     setIsLoading(true)
     const subscriber =  Firestore()
       .collection('orders')
-      .where('status', '==', statusSelected)
+      // .where('status', '==', statusSelected)
       .onSnapshot( snapshot => {
+        console.log(snapshot)
         const data = snapshot.docs.map(doc => {
+          console.log(doc.data())
           const {patrimony, description, status, created_at} = doc.data()
           return {
             id: doc.id,
